@@ -10,11 +10,12 @@
 		"lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\"",
 		"lint:fix": "eslint --fix \"./src/**/*.{jsx,ts,tsx}\"",
 		"format": "prettier --write ./src//**/*.{ts,tsx,css} --config ./.prettierrc",
-		"prepare": "husky"
+		"prepare": "husky",
+		"cm": "cz"
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "lint-staged"
+			"pre-commit": "yarn lint-staged"
 		}
 	},
 	"lint-staged": {
@@ -33,16 +34,24 @@
 		"@typescript-eslint/eslint-plugin": "^7.0.2",
 		"@typescript-eslint/parser": "^7.0.2",
 		"@vitejs/plugin-react": "^4.2.1",
+		"commitizen": "^4.3.0",
+		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^8.57.0",
 		"eslint-plugin-react": "^7.33.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-react-refresh": "^0.4.5",
 		"eslint-plugin-simple-import-sort": "^12.0.0",
 		"husky": "^9.0.11",
+		"lint-staged": "^15.2.2",
 		"prettier": "^3.2.5",
 		"react-hooks": "^1.0.1",
 		"styled-components": "^6.1.8",
 		"typescript": "^5.2.2",
 		"vite": "^5.1.4"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
 	}
 }

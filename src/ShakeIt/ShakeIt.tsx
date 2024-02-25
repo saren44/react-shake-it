@@ -37,7 +37,7 @@ export const ShakeIt = ({
     }
     if (delay) {
       t = setTimeout(() => setIsActiveAndReady(true), +delay)
-      console.log(t)
+      //console.log(t)
     }
 
     return () => {
@@ -86,7 +86,7 @@ export const ShakeIt = ({
       anim += stepBuilder
     }
     anim += '}'
-    //console.log(anim)
+    ///console.log(anim)
     return anim
   }
 
