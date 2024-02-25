@@ -1,0 +1,1 @@
+export { ShakeIt } from './ShakeIt'

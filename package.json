@@ -7,22 +7,22 @@
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
-		"lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-		"lint:fix": "eslint --fix 'src/**/*.{jsx,ts,tsx}'",
-		"format": "prettier --write src//**/*.{ts,tsx,css} --config ./.prettierrc",
+		"lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\"",
+		"lint:fix": "eslint --fix './src/**/*.{jsx,ts,tsx}'",
+		"format": "prettier --write ./src//**/*.{ts,tsx,css} --config ./.prettierrc",
 		"prepare": "husky"
 	},
 	"husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "yarn  eslint",
-      "yarn  format"
-    ]
-  },
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"src/**/*.{js,jsx,ts,tsx}": [
+			"yarn eslint",
+			"yarn format"
+		]
+	},
 	"dependencies": {
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0"
@@ -41,6 +41,7 @@
 		"husky": "^9.0.11",
 		"prettier": "^3.2.5",
 		"react-hooks": "^1.0.1",
+		"styled-components": "^6.1.8",
 		"typescript": "^5.2.2",
 		"vite": "^5.1.4"
 	}
