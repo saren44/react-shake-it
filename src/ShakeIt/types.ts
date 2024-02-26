@@ -9,9 +9,9 @@ export interface IShakeItProps extends ComponentProps<'div'> {
   opacity?: string
   duration?: number | string
   delay?: number | string
-  iterations?: number | string
+  iterations?: string
   precision?: number
-  interpolateFn?: interpolateFnType
+  interpolateFn?: IInterpolateFn
   active?: boolean
   createOnce?: boolean
 }
@@ -21,7 +21,7 @@ export interface IstyledShakeItProps {
   $delay: string
 }
 
-export type interpolateFnType = (progress: number) => number
+export type IInterpolateFn = (progress: number) => number
 
 export interface IValues {
   horizontal?: number | string

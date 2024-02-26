@@ -1,4 +1,4 @@
-import { interpolateFnType } from '../ShakeIt'
+import { IInterpolateFn } from '../ShakeIt'
 
 export const interpolate = (a: number, b: number, x: number, isInteger: boolean = true) => {
   if (isInteger) {
@@ -8,10 +8,10 @@ export const interpolate = (a: number, b: number, x: number, isInteger: boolean 
   }
 }
 
-export const interpolateRandom: interpolateFnType = () => {
+export const interpolateRandom: IInterpolateFn = () => {
   return Math.random()
 }
 
-export const interpolateLinear: interpolateFnType = (progress: number) => {
+export const interpolateLinear: IInterpolateFn = (progress: number) => {
   return progress
 }
