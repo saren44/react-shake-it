@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { IShakeItProps } from './types'
-import { interpolate, interpolateRandom } from '../util'
-import { useEffect, useState } from 'react'
+import { interpolate, interpolateRandom, resolveStringValue } from '../util'
+import { useEffect, useRef, useState } from 'react'
 
 export const StyledShakeIt = styled.div<{
   $anim?: string
@@ -15,57 +15,41 @@ export const StyledShakeIt = styled.div<{
 
 export const ShakeIt: React.FC<IShakeItProps> = ({
   children,
-  horizontal = 0,
+  horizontal = '10px',
   vertical = 0,
   scale = '1.0 1.0',
   opacity = '1.0 0.2',
   rotation = 1,
   duration = '1000ms',
-  delay = 1000,
-  iterations = '1',
+  delay,
+  iterations = 'infinite',
   interpolateFn = interpolateRandom,
   active = true,
   precision = 0.2,
   ...props
 }: IShakeItProps) => {
   const [isActiveAndReady, setIsActiveAndReady] = useState<boolean>(false)
-
-  useEffect(() => {
-    let t: ReturnType<typeof setTimeout> | undefined
-    if (!active) {
-      setIsActiveAndReady(false)
-      return
-    }
-    if (delay) {
-      t = setTimeout(() => setIsActiveAndReady(true), +delay)
-      //console.log(t)
-    }
-
-    return () => {
-      t && clearTimeout(t)
-    }
-  }, [active, delay])
-
-  if (!isActiveAndReady) {
-    return <div>{children}</div>
-  }
+  const anim = useRef<string>('')
 
   const getTranslation = (progress: number) => {
-    return `translate(${interpolate(+horizontal, -horizontal, interpolateFn(progress))}px, ${interpolate(+vertical, -vertical, interpolateFn(progress))}px) `
+    const resolvedHorizontal = resolveStringValue(horizontal)
+    const resolvedVertical = resolveStringValue(vertical)
+    return `translate(${interpolate(resolvedHorizontal.low, resolvedHorizontal.high, interpolateFn(progress))}${resolvedHorizontal.lowUnit ? resolvedHorizontal.lowUnit : 'px'}, ${interpolate(resolvedVertical.low, resolvedVertical.high, interpolateFn(progress))}${resolvedVertical.lowUnit ? resolvedVertical.lowUnit : 'px'}) `
   }
 
   const getRotation = (progress: number) => {
-    return `rotate(${interpolate(+rotation, -rotation, interpolateFn(progress))}deg) `
+    const resolved = resolveStringValue(rotation)
+    return `rotate(${interpolate(resolved.low, resolved.high, interpolateFn(progress))}${resolved.lowUnit ? resolved.lowUnit : 'deg'}) `
   }
 
   const getScale = (progress: number) => {
-    const s = scale.split(' ')
-    return `scale(${interpolate(+s[0], +s[1], interpolateFn(progress), false)}) `
+    const resolved = resolveStringValue(scale)
+    return `scale(${interpolate(resolved.low, resolved.high, interpolateFn(progress), false)}) `
   }
 
   const getOpacity = (progress: number) => {
-    const o = opacity.split(' ')
-    return `opacity: ${interpolate(+o[0], +o[1], interpolateFn(progress), false)} `
+    const resolved = resolveStringValue(opacity)
+    return `opacity: ${interpolate(resolved.low, resolved.high, interpolateFn(progress), false)} `
   }
 
   const buildAnim = () => {
@@ -87,15 +71,40 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
       anim += stepBuilder
     }
     anim += '}'
-    ///console.log(anim)
+    //console.log(anim)
     return anim
   }
 
-  buildAnim()
+  anim.current = buildAnim()
+
+  //console.log('ANIM: ' + anim.current)
+
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout> | undefined
+    if (!active) {
+      setIsActiveAndReady(false)
+      return
+    }
+
+    if (delay !== undefined) {
+      t = setTimeout(() => setIsActiveAndReady(true), +delay)
+      //console.log(t)
+    } else {
+      setIsActiveAndReady(true)
+    }
+
+    return () => {
+      t && clearTimeout(t)
+    }
+  }, [active, delay])
+
+  if (!isActiveAndReady) {
+    return <div>{children}</div>
+  }
 
   return (
     <StyledShakeIt
-      $anim={buildAnim()}
+      $anim={anim.current}
       $duration={duration?.toString()}
       $iters={iterations?.toString()}
       {...props}
