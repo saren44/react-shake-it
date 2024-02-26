@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { IShakeItProps } from './types'
+import { IIndexable, IShakeItProps, IValues } from './types'
 import { interpolate, interpolateRandom, resolveStringValue } from '../util'
 import { useEffect, useRef, useState } from 'react'
 
@@ -18,17 +18,39 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
   horizontal = '10px',
   vertical = 0,
   scale = '1.0 1.0',
-  opacity = '1.0 0.2',
+  opacity = '1.0 1.0',
   rotation = 1,
-  duration = '1000ms',
+  duration = '400ms',
   delay,
   iterations = 'infinite',
   interpolateFn = interpolateRandom,
   active = true,
   precision = 0.2,
+  createOnce = false,
   ...props
 }: IShakeItProps) => {
   const [isActiveAndReady, setIsActiveAndReady] = useState<boolean>(false)
+  const values = useRef<IValues>({
+    horizontal,
+    vertical,
+    scale,
+    opacity,
+    rotation,
+    precision,
+  })
+
+  const detectValuesChange = (data: IValues) => {
+    const keysPrev = Object.keys(values.current)
+
+    for (const key of keysPrev) {
+      if ((values.current as IIndexable)[key] !== (data as IIndexable)[key]) {
+        return true
+      }
+    }
+
+    return false
+  }
+
   const anim = useRef<string>('')
 
   const getTranslation = (progress: number) => {
@@ -75,8 +97,6 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
     return anim
   }
 
-  anim.current = buildAnim()
-
   //console.log('ANIM: ' + anim.current)
 
   useEffect(() => {
@@ -84,6 +104,14 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
     if (!active) {
       setIsActiveAndReady(false)
       return
+    }
+    if (
+      !createOnce ||
+      anim.current === '' ||
+      detectValuesChange({ horizontal, vertical, scale, opacity, rotation, precision } as IValues)
+    ) {
+      values.current = { horizontal, vertical, scale, opacity, rotation, precision }
+      anim.current = buildAnim()
     }
 
     if (delay !== undefined) {
@@ -96,7 +124,7 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
     return () => {
       t && clearTimeout(t)
     }
-  }, [active, delay])
+  })
 
   if (!isActiveAndReady) {
     return <div>{children}</div>
