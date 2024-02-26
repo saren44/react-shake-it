@@ -1,14 +1,12 @@
-import { ReactElement } from 'react'
+import { ComponentProps, ReactElement } from 'react'
 
-export interface IShakeItProps {
+export interface IShakeItProps extends ComponentProps<'div'> {
   children: ReactElement
   horizontal?: number | string
   vertical?: number | string
   scale?: string
   rotation?: number | string
   opacity?: string
-  onShakeStart?: () => void
-  onShakeEnd?: () => void
   duration?: number | string
   delay?: number | string
   iterations?: number | string

@@ -9,11 +9,16 @@ function App() {
 
   return (
     <>
-			<ShakeIt active={hover}>
+			<ShakeIt 
+				active={hover}
+				
+				onAnimationStart={() => console.log('anim start from app')}
+			>
 				<div 
 					style={{width: 200, height: 100, backgroundColor: 'inherit', cursor: 'default'}}
 					onMouseEnter={() => setHover(true)}
 					onMouseLeave={() => setHover(false)}
+
 				> 
 					hello world 
 				</div>

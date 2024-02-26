@@ -13,7 +13,7 @@ export const StyledShakeIt = styled.div<{
   ${(props) => props.$anim}
 `
 
-export const ShakeIt = ({
+export const ShakeIt: React.FC<IShakeItProps> = ({
   children,
   horizontal = 0,
   vertical = 0,
@@ -22,10 +22,11 @@ export const ShakeIt = ({
   rotation = 1,
   duration = '1000ms',
   delay = 1000,
-  iterations = 'infinite',
+  iterations = '1',
   interpolateFn = interpolateRandom,
   active = true,
   precision = 0.2,
+  ...props
 }: IShakeItProps) => {
   const [isActiveAndReady, setIsActiveAndReady] = useState<boolean>(false)
 
@@ -97,6 +98,7 @@ export const ShakeIt = ({
       $anim={buildAnim()}
       $duration={duration?.toString()}
       $iters={iterations?.toString()}
+      {...props}
     >
       {children}
     </StyledShakeIt>
