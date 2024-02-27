@@ -7,10 +7,16 @@ export const StyledShakeIt = styled.div<{
   $anim?: string
   $duration?: string
   $iters?: string
+  $tf?: string
+  $direction?: string
+  $fm?: string
 }>`
-  animation: shake_it_baby ${(props) => props.$duration} ${(props) => props.$iters} normal;
-
-  ${(props) => props.$anim}
+  animation: shake_it_baby;
+  animation-duration: ${(props) => props.$duration};
+  animation-timing-function: ${(props) => props.$tf};
+  animation-iteration-count: ${(props) => props.$iters};
+  animation-direction: ${(props) => props.$direction};
+  animation-fill-mode: ${(props) => props.$fm} ${(props) => props.$anim};
 `
 
 export const ShakeIt: React.FC<IShakeItProps> = ({
@@ -26,6 +32,9 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
   interpolator = interpolateRandom,
   active = true,
   precision = 0.2,
+  fillMode = 'none',
+  direction = 'normal',
+  timingFunction = 'linear',
   ...props
 }: IShakeItProps) => {
   const [isActiveAndReady, setIsActiveAndReady] = useState<boolean>(false)
@@ -117,7 +126,7 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
     return () => {
       t && clearTimeout(t)
     }
-  }, [delay, active])
+  }, [active, delay])
 
   const anim = useBuildAnim()
 
@@ -130,6 +139,9 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
       $anim={anim}
       $duration={duration?.toString()}
       $iters={iterations?.toString()}
+      $fm={fillMode}
+      $tf={timingFunction}
+      $direction={direction}
       {...props}
     >
       {children}

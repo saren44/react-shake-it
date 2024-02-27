@@ -1,29 +1,26 @@
 import './App.css'
 import { ShakeIt } from '../../../src'
-import { useState } from 'react'
 import { interpolateLinear, interpolateLinearReverse } from '../../../src/util';
 
 function App() {
-	const [hover, setHover] = useState<boolean>(false);
-
-
 
   return (
     <>
 			<ShakeIt 
-				active={hover}
+				active={true}
 				onAnimationStart={() => console.log('anim start from app')}
-				horizontal={"asd"}
+				horizontal={50}
 				opacity='0.0 1.0'
+				duration='3000ms'
+				vertical={"0px 200px"}
 				interpolator={{
 					h: interpolateLinear,
-					o: interpolateLinearReverse
+					o: interpolateLinearReverse,
+					v: interpolateLinear
 				}}
 			>
 				<div 
 					style={{width: 200, height: 100, backgroundColor: 'inherit', cursor: 'default'}}
-					onMouseEnter={() => setHover(true)}
-					onMouseLeave={() => setHover(false)}
 
 				> 
 					hello world 

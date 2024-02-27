@@ -13,6 +13,9 @@ export interface IShakeItProps extends ComponentProps<'div'> {
   precision?: number
   interpolator?: IInterpolateFn | IIndividualInterpolators
   active?: boolean
+  fillMode?: string
+  direction?: string
+  timingFunction?: string
 }
 
 export interface IIndividualInterpolators {
