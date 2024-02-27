@@ -13,7 +13,6 @@ export interface IShakeItProps extends ComponentProps<'div'> {
   precision?: number
   interpolateFn?: IInterpolateFn
   active?: boolean
-  createOnce?: boolean
 }
 
 export interface IstyledShakeItProps {
@@ -22,17 +21,3 @@ export interface IstyledShakeItProps {
 }
 
 export type IInterpolateFn = (progress: number) => number
-
-export interface IValues {
-  horizontal?: number | string
-  vertical?: number | string
-  scale?: string
-  rotation?: number | string
-  opacity?: string
-  duration?: number | string
-  precision?: number
-}
-
-export interface IIndexable {
-  [key: string]: number | string
-}

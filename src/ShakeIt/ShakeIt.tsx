@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { IIndexable, IShakeItProps, IValues } from './types'
+import { IShakeItProps } from './types'
 import { interpolate, interpolateRandom, resolveStringValue } from '../util'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 export const StyledShakeIt = styled.div<{
   $anim?: string
@@ -26,32 +26,9 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
   interpolateFn = interpolateRandom,
   active = true,
   precision = 0.2,
-  createOnce = false,
   ...props
 }: IShakeItProps) => {
   const [isActiveAndReady, setIsActiveAndReady] = useState<boolean>(false)
-  const values = useRef<IValues>({
-    horizontal,
-    vertical,
-    scale,
-    opacity,
-    rotation,
-    precision,
-  })
-
-  const detectValuesChange = (data: IValues) => {
-    const keysPrev = Object.keys(values.current)
-
-    for (const key of keysPrev) {
-      if ((values.current as IIndexable)[key] !== (data as IIndexable)[key]) {
-        return true
-      }
-    }
-
-    return false
-  }
-
-  const anim = useRef<string>('')
 
   const getTranslation = (progress: number) => {
     const resolvedHorizontal = resolveStringValue(horizontal)
@@ -74,28 +51,29 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
     return `opacity: ${interpolate(resolved.low, resolved.high, interpolateFn(progress), false)} `
   }
 
-  const buildAnim = () => {
-    let steps = Math.floor(1 / precision)
-    const stepSize = 100 / steps
-    steps += 1 //frame at 100%
-    let anim = '@keyframes shake_it_baby {\n'
+  const useBuildAnim = () =>
+    useMemo(() => {
+      let steps = Math.floor(1 / precision)
+      const stepSize = 100 / steps
+      steps += 1 //frame at 100%
+      let anim = '@keyframes shake_it_baby {\n'
 
-    for (let i = 0; i < steps; i++) {
-      let stepBuilder = ''
-      stepBuilder += `${stepSize * i}%{`
-      stepBuilder += 'transform: '
-      stepBuilder += getTranslation(precision * i)
-      stepBuilder += getRotation(precision * i)
-      stepBuilder += getScale(precision * i)
-      stepBuilder += '; '
-      stepBuilder += getOpacity(precision * i)
-      stepBuilder += ';}\n '
-      anim += stepBuilder
-    }
-    anim += '}'
-    //console.log(anim)
-    return anim
-  }
+      for (let i = 0; i < steps; i++) {
+        let stepBuilder = ''
+        stepBuilder += `${stepSize * i}%{`
+        stepBuilder += 'transform: '
+        stepBuilder += getTranslation(precision * i)
+        stepBuilder += getRotation(precision * i)
+        stepBuilder += getScale(precision * i)
+        stepBuilder += '; '
+        stepBuilder += getOpacity(precision * i)
+        stepBuilder += ';}\n '
+        anim += stepBuilder
+      }
+      anim += '}'
+      //console.log(anim)
+      return anim
+    }, [horizontal, vertical, scale, rotation, opacity, precision])
 
   //console.log('ANIM: ' + anim.current)
 
@@ -104,14 +82,6 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
     if (!active) {
       setIsActiveAndReady(false)
       return
-    }
-    if (
-      !createOnce ||
-      anim.current === '' ||
-      detectValuesChange({ horizontal, vertical, scale, opacity, rotation, precision } as IValues)
-    ) {
-      values.current = { horizontal, vertical, scale, opacity, rotation, precision }
-      anim.current = buildAnim()
     }
 
     if (delay !== undefined) {
@@ -124,7 +94,9 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
     return () => {
       t && clearTimeout(t)
     }
-  })
+  }, [delay, active])
+
+  const anim = useBuildAnim()
 
   if (!isActiveAndReady) {
     return <div>{children}</div>
@@ -132,7 +104,7 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
 
   return (
     <StyledShakeIt
-      $anim={anim.current}
+      $anim={anim}
       $duration={duration?.toString()}
       $iters={iterations?.toString()}
       {...props}

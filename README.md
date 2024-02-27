@@ -18,7 +18,6 @@ A very, very cool library for making things shake, move, hide and sway
 | `iteratons`     |           | `string`           |         |
 | `precision`     |           | `number`           |         |
 | `interpolateFn` |           | `IInterpolateFn`   |         |
-| `createOnce`    |           | `boolean`          |         |
 
 
 
@@ -69,7 +68,5 @@ Length of 1 keyframe (for example `0.2` means keyframes every `20%`).
 ### `interpolateFn`
 Function (`(progress: number) => number`) used to create values for the animation. Input and output values are between `0.0` and `1.0`.
 
-### `createOnce`
-Setting this to `true` will cause the animation not to re-render between activations. The animation still will be created, when one of her elements changes. Useful with non-random interpolate functions.
 
 

@@ -11,9 +11,8 @@ function App() {
     <>
 			<ShakeIt 
 				active={hover}
-				createOnce={true}
 				onAnimationStart={() => console.log('anim start from app')}
-				vertical={'10px'}
+				vertical={'0'}
 			>
 				<div 
 					style={{width: 200, height: 100, backgroundColor: 'inherit', cursor: 'default'}}
