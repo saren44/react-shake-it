@@ -1,7 +1,7 @@
 import './App.css'
 import { ShakeIt } from '../../../src'
 import { useState } from 'react'
-import { interpolateLinear } from '../../../src/util';
+import { interpolateLinear, interpolateLinearReverse } from '../../../src/util';
 
 function App() {
 	const [hover, setHover] = useState<boolean>(false);
@@ -13,10 +13,11 @@ function App() {
 			<ShakeIt 
 				active={hover}
 				onAnimationStart={() => console.log('anim start from app')}
-				vertical={20}
-				horizontal={-100}
+				horizontal={"asd"}
+				opacity='0.0 1.0'
 				interpolator={{
-					h: interpolateLinear
+					h: interpolateLinear,
+					o: interpolateLinearReverse
 				}}
 			>
 				<div 

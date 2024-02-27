@@ -1,11 +1,14 @@
-export type stringResolveType = (val: string | number) => {
+export type stringResolveType = (
+  val: string | number,
+  source?: string,
+) => {
   low: number
   lowUnit?: string
   high: number
   highUnit?: string
 }
 
-export const resolveStringValue: stringResolveType = (val: string | number) => {
+export const resolveStringValue: stringResolveType = (val: string | number, source?: string) => {
   if (typeof val === 'number') {
     return {
       low: -val,
@@ -13,55 +16,47 @@ export const resolveStringValue: stringResolveType = (val: string | number) => {
     }
   }
 
-  const digitRegExp = RegExp(/(\d*)/)
-  const wordRegExp = RegExp(/([a-z]*)/)
-  const valSplit = val.split(/\s+/)
+  const digitRegExp = RegExp(/[+-]?([0-9]*[.])?[0-9]+/)
+  const wordRegExp = RegExp(/([a-z]+)/)
 
-  const lowReg = digitRegExp.exec(valSplit[0])
-  const highReg = digitRegExp.exec(valSplit[1])
-  const lowUnitReg = wordRegExp.exec(valSplit[0])
-  const highUnitReg = wordRegExp.exec(valSplit[1])
+  const singleExpressionRegex = RegExp(/[+-]?([0-9]*[.])?[0-9]+[a-z]*/, 'g')
 
-  const lowPresent = lowReg !== null
-  const highPresent = highReg !== null
-  const lowUnitPresent = lowUnitReg !== null
-  const highUnitPresent = highUnitReg !== null
+  const res = val.match(singleExpressionRegex)
 
-  let low, high, lowUnit, highUnit
-
-  if (!lowPresent) {
-    low = 0
-  } else {
-    low = +lowReg![0]
-  }
-
-  if (!lowUnitPresent) {
-    lowUnit = undefined
-  } else {
-    lowUnit = lowUnitReg![0]
-  }
-
-  if (!highPresent) {
+  if (res === null) {
+    // eslint-disable-next-line no-console
+    console.warn(`Incorrect value for prop ${source}. Using {0, 0} instead`)
     return {
-      low: -low,
-      lowUnit,
-      high: low,
-      highUnit: lowUnit,
+      low: 0,
+      high: 0,
     }
-  } else {
-    high = +highReg![0]
-  }
+  } else if (res.length === 1) {
+    const n = res[0].match(digitRegExp)
+    const u = res[0].match(wordRegExp)
 
-  if (highUnitPresent) {
-    highUnit = undefined
-  } else {
-    highUnit = highUnitReg![0]
+    return {
+      low: -n![0],
+      high: +n![0],
+      lowUnit: u![0],
+      highUnit: u![0],
+    }
+  }
+  const low = res[0].match(digitRegExp)
+  const lowUnit = res[0].match(wordRegExp)
+  const high = res[1].match(digitRegExp)
+  const highUnit = res[1].match(wordRegExp)
+
+  if (lowUnit === null || highUnit === null) {
+    return {
+      low: +low![0],
+      high: +high![0],
+    }
   }
 
   return {
-    low,
-    high,
-    lowUnit,
-    highUnit,
+    low: +low![0],
+    high: +high![0],
+    lowUnit: lowUnit[0],
+    highUnit: highUnit[0],
   }
 }

@@ -52,23 +52,25 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
 
   const inters = useSetupInterpolators()
   const getTranslation = (progress: number) => {
-    const resolvedHorizontal = resolveStringValue(horizontal)
-    const resolvedVertical = resolveStringValue(vertical)
+    const resolvedHorizontal = resolveStringValue(horizontal, 'horizontal')
+    const resolvedVertical = resolveStringValue(vertical, 'vertical')
+    //console.log(resolvedHorizontal)
     return `translate(${interpolate(resolvedHorizontal.low, resolvedHorizontal.high, inters.h(progress))}${resolvedHorizontal.lowUnit ? resolvedHorizontal.lowUnit : 'px'}, ${interpolate(resolvedVertical.low, resolvedVertical.high, inters.v(progress))}${resolvedVertical.lowUnit ? resolvedVertical.lowUnit : 'px'}) `
   }
 
   const getRotation = (progress: number) => {
-    const resolved = resolveStringValue(rotation)
+    const resolved = resolveStringValue(rotation, 'rotation')
     return `rotate(${interpolate(resolved.low, resolved.high, inters.r(progress))}${resolved.lowUnit ? resolved.lowUnit : 'deg'}) `
   }
 
   const getScale = (progress: number) => {
-    const resolved = resolveStringValue(scale)
+    const resolved = resolveStringValue(scale, 'scale')
     return `scale(${interpolate(resolved.low, resolved.high, inters.s(progress), false)}) `
   }
 
   const getOpacity = (progress: number) => {
-    const resolved = resolveStringValue(opacity)
+    const resolved = resolveStringValue(opacity, 'opacity')
+    //console.log(resolved)
     return `opacity: ${interpolate(resolved.low, resolved.high, inters.o(progress), false)} `
   }
 
