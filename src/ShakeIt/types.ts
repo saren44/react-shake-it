@@ -11,8 +11,16 @@ export interface IShakeItProps extends ComponentProps<'div'> {
   delay?: number | string
   iterations?: string
   precision?: number
-  interpolateFn?: IInterpolateFn
+  interpolator?: IInterpolateFn | IIndividualInterpolators
   active?: boolean
+}
+
+export interface IIndividualInterpolators {
+  h?: IInterpolateFn
+  v?: IInterpolateFn
+  s?: IInterpolateFn
+  r?: IInterpolateFn
+  o?: IInterpolateFn
 }
 
 export interface IstyledShakeItProps {

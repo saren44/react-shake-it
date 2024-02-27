@@ -15,40 +15,61 @@ export const StyledShakeIt = styled.div<{
 
 export const ShakeIt: React.FC<IShakeItProps> = ({
   children,
-  horizontal = '10px',
+  horizontal = 0,
   vertical = 0,
   scale = '1.0 1.0',
   opacity = '1.0 1.0',
-  rotation = 1,
+  rotation = 0,
   duration = '400ms',
   delay,
   iterations = 'infinite',
-  interpolateFn = interpolateRandom,
+  interpolator = interpolateRandom,
   active = true,
   precision = 0.2,
   ...props
 }: IShakeItProps) => {
   const [isActiveAndReady, setIsActiveAndReady] = useState<boolean>(false)
 
+  const useSetupInterpolators = () =>
+    useMemo(() => {
+      if (typeof interpolator === 'function') {
+        return {
+          h: interpolator,
+          v: interpolator,
+          s: interpolator,
+          r: interpolator,
+          o: interpolator,
+        }
+      }
+      return {
+        h: interpolator.h ? interpolator.h : interpolateRandom,
+        v: interpolator.v ? interpolator.v : interpolateRandom,
+        s: interpolator.s ? interpolator.s : interpolateRandom,
+        r: interpolator.r ? interpolator.r : interpolateRandom,
+        o: interpolator.o ? interpolator.o : interpolateRandom,
+      }
+    }, [interpolator])
+
+  const inters = useSetupInterpolators()
   const getTranslation = (progress: number) => {
     const resolvedHorizontal = resolveStringValue(horizontal)
     const resolvedVertical = resolveStringValue(vertical)
-    return `translate(${interpolate(resolvedHorizontal.low, resolvedHorizontal.high, interpolateFn(progress))}${resolvedHorizontal.lowUnit ? resolvedHorizontal.lowUnit : 'px'}, ${interpolate(resolvedVertical.low, resolvedVertical.high, interpolateFn(progress))}${resolvedVertical.lowUnit ? resolvedVertical.lowUnit : 'px'}) `
+    return `translate(${interpolate(resolvedHorizontal.low, resolvedHorizontal.high, inters.h(progress))}${resolvedHorizontal.lowUnit ? resolvedHorizontal.lowUnit : 'px'}, ${interpolate(resolvedVertical.low, resolvedVertical.high, inters.v(progress))}${resolvedVertical.lowUnit ? resolvedVertical.lowUnit : 'px'}) `
   }
 
   const getRotation = (progress: number) => {
     const resolved = resolveStringValue(rotation)
-    return `rotate(${interpolate(resolved.low, resolved.high, interpolateFn(progress))}${resolved.lowUnit ? resolved.lowUnit : 'deg'}) `
+    return `rotate(${interpolate(resolved.low, resolved.high, inters.r(progress))}${resolved.lowUnit ? resolved.lowUnit : 'deg'}) `
   }
 
   const getScale = (progress: number) => {
     const resolved = resolveStringValue(scale)
-    return `scale(${interpolate(resolved.low, resolved.high, interpolateFn(progress), false)}) `
+    return `scale(${interpolate(resolved.low, resolved.high, inters.s(progress), false)}) `
   }
 
   const getOpacity = (progress: number) => {
     const resolved = resolveStringValue(opacity)
-    return `opacity: ${interpolate(resolved.low, resolved.high, interpolateFn(progress), false)} `
+    return `opacity: ${interpolate(resolved.low, resolved.high, inters.o(progress), false)} `
   }
 
   const useBuildAnim = () =>
