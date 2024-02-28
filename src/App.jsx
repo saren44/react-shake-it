@@ -8,17 +8,31 @@ import { NavBar } from './components/NavBar'
 import { PlaygroundSection } from './sections/PlaygroundSection'
 import { ExamplesSection } from './sections/ExamplesSection'
 import { DocsSection } from './sections/DocsSection'
+import { AdvancedExamplesSection } from './sections/AdvancedExamplesSection'
+import { ShakeIt } from 'react-shake-it'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [shakeApp, setShakeApp] = useState(false)
 
   return (
-    <div>
-			<NavBar />
-			<PlaygroundSection />
-			<ExamplesSection />
-			<DocsSection />
-    </div>
+		<ShakeIt
+			active={shakeApp}
+			iterations='1'
+			horizontal={10}
+			vertical={10}
+			rotation={5}
+			duration='1s'
+			precision={0.02}
+		>
+			<div>
+				<NavBar shakeCallback={() => setShakeApp(true)} isShaked={shakeApp}/>
+				<PlaygroundSection />
+				<ExamplesSection />
+				<AdvancedExamplesSection />
+				<DocsSection />
+    	</div>
+		</ShakeIt>
+
   )
 }
 

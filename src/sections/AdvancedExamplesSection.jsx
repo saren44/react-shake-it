@@ -2,11 +2,11 @@ import { Section } from "../components/Section"
 
 
 
-export const ExamplesSection = () => {
+export const AdvancedExamplesSection = () => {
 	return (
 		<Section
-			id={'examples'}
-			title={'Check me out!'}
+			id={'advanced-examples'}
+			title={'Learn my biggest secrets!'}
 		>
 			This is the examples Section
 			<div style={{height: 500}}>

@@ -10,7 +10,7 @@ export const DocsSection = () => {
 		>
 			This is the docs Section
 			<div style={{height: 500}}>
-				fake content
+				fill content
 			</div>
 		</Section>
 	)
