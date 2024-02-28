@@ -1,7 +1,7 @@
 {
 	"name": "react-shake-it",
 	"private": false,
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
@@ -35,7 +35,7 @@
   },
 	"main": "./dist/react-shake-it.umd.js",
   "module": "./dist/react-shake-it.es.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/ShakeIt/index.d.ts",
 	"devDependencies": {
 		"@types/node": "^20.11.21",
 		"@types/react": "^18.2.56",
