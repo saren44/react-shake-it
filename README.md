@@ -11,16 +11,16 @@ A component for generating CSS animations at runtime
 | `horizontal`    |           | `number \| string` |`0`    	 |
 | `vertical`      |           | `number \| string` |`0`    	 |
 | `rotation`      |           | `number \| string` |`0`    	 |
-| `scale`         |           | `string`           |`1.0 1.0`|
-| `opacity`       |           | `string`           |`1.0 1.0`|
-| `duration`      |           | `number \| string` |`400ms`  |
+| `scale`         |           | `string`           |`"1.0 1.0"`|
+| `opacity`       |           | `string`           |`"1.0 1.0"`|
+| `duration`      |           | `number \| string` |`"400ms"`  |
 | `delay`         |           | `number` |         |
-| `iteratons`     |           | `string`           |`infinite`|
+| `iteratons`     |           | `string`           |`"infinite"`|
 | `precision`     |           | `number`           |`0.2`    |
-| `interpolator`  |           | `IInterpolateFn \| IIndividualInterpolators`		|`interpolateRandom()`|
-| `fillMode`      |           | `IInterpolateFn`   |`none`	 |
-| `direction`     |           | `IInterpolateFn`   |`normal` |
-| `timingFunction`|           | `IInterpolateFn`   |`linear` |
+| `interpolator`  |           | `IInterpolateFn \| IIndividualInterpolators`		|`interpolateRandom`|
+| `fillMode`      |           | `IInterpolateFn`   |`"none"`	 |
+| `direction`     |           | `IInterpolateFn`   |`"normal"` |
+| `timingFunction`|           | `IInterpolateFn`   |`"linear"` |
 
 
 
@@ -80,4 +80,3 @@ Defines way of generating new values for the animation. Can be either:
 Direct CSS animation properties. 
 
 > ❕ Unlike regular CSS animation, the value function is `linear`. This is because interpolator prop provides similar, yet more extensive function.
-
