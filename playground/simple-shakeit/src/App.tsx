@@ -1,6 +1,6 @@
 import './App.css'
-import { ShakeIt } from '../../../src'
 import { interpolateLinear, interpolateLinearReverse } from '../../../src/util';
+import { ShakeIt } from '../../../dist/ShakeIt';
 
 function App() {
 

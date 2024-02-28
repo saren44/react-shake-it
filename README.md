@@ -1,6 +1,6 @@
 # react-shake-it
 
-A very, very cool library for making things shake, move, hide and sway
+A component for generating CSS animations at runtime
 
 ## Props rundown
 
@@ -28,7 +28,7 @@ A very, very cool library for making things shake, move, hide and sway
 
 
 ### `active`
-Defines, whether the animation should be played. Setting this to `false` will return an empty `<div>`.
+Defines, whether the animation should be played. Setting this to `false` will return a simple `<div>`.
 
 ### `horizontal`
 Defines min and max horizontal translation of the animated component. Can be either:
@@ -79,5 +79,5 @@ Defines way of generating new values for the animation. Can be either:
 ### `fillMode, direction, timingFunction`
 Direct CSS animation properties. 
 
-> ❕ Unlike regular CSS animation, the value function is `linear`. This is because interpolator prop 				provides similar, yet more extensive function.
+> ❕ Unlike regular CSS animation, the value function is `linear`. This is because interpolator prop provides similar, yet more extensive function.
 
