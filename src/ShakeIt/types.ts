@@ -8,7 +8,7 @@ export interface IShakeItProps extends ComponentProps<'div'> {
   rotation?: number | string
   opacity?: string
   duration?: number | string
-  delay?: number | string
+  delay?: number
   iterations?: string
   precision?: number
   interpolator?: IInterpolateFn | IIndividualInterpolators
