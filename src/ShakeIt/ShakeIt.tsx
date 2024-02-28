@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { IShakeItProps } from './types'
-import { interpolate, interpolateRandom, resolveStringValue } from '../util'
-import { useEffect, useMemo, useState } from 'react'
+import { interpolate, interpolateRandom, makeId, resolveStringValue } from '../util'
+import { useEffect, useMemo, useState, useRef } from 'react'
 
 export const StyledShakeIt = styled.div<{
   $anim?: string
@@ -10,8 +10,9 @@ export const StyledShakeIt = styled.div<{
   $tf?: string
   $direction?: string
   $fm?: string
+  $animName?: string
 }>`
-  animation: shake_it_baby;
+  animation: ${(props) => props.$animName};
   animation-duration: ${(props) => props.$duration};
   animation-timing-function: ${(props) => props.$tf};
   animation-iteration-count: ${(props) => props.$iters};
@@ -39,6 +40,7 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
   ...props
 }: IShakeItProps) => {
   const [isActiveAndReady, setIsActiveAndReady] = useState<boolean>(false)
+  const animId = useRef<string>(makeId(6))
 
   const useSetupInterpolators = () =>
     useMemo(() => {
@@ -89,7 +91,7 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
       let steps = Math.floor(1 / precision)
       const stepSize = 100 / steps
       steps += 1 //frame at 100%
-      let anim = '@keyframes shake_it_baby {\n'
+      let anim = `@keyframes ${animId.current} {\n`
 
       for (let i = 0; i < steps; i++) {
         let stepBuilder = ''
@@ -132,7 +134,7 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
   const anim = useBuildAnim()
 
   if (!isActiveAndReady) {
-    return <div>{children}</div>
+    return <div {...props}>{children}</div>
   }
 
   return (
@@ -143,6 +145,7 @@ export const ShakeIt: React.FC<IShakeItProps> = ({
       $fm={fillMode}
       $tf={timingFunction}
       $direction={direction}
+      $animName={animId.current}
       {...props}
     >
       {children}
