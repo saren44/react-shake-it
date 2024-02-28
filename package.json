@@ -1,7 +1,7 @@
 {
 	"name": "react-shake-it",
 	"private": false,
-	"version": "1.0.1",
+	"version": "1.0.6",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
@@ -29,13 +29,17 @@
 	],
 	"exports": {
     ".": {
+			"types": "./dist/index.d.ts",
       "import": "./dist/react-shake-it.es.js",
       "require": "./dist/react-shake-it.umd.js"
     }
   },
 	"main": "./dist/react-shake-it.umd.js",
   "module": "./dist/react-shake-it.es.js",
-  "types": "./dist/ShakeIt/index.d.ts",
+  "types": "./dist/index.d.ts",
+	"dependencies": {
+		"styled-components": "^6.1.8"
+	},
 	"devDependencies": {
 		"@types/node": "^20.11.21",
 		"@types/react": "^18.2.56",
@@ -57,7 +61,6 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-hooks": "^1.0.1",
-		"styled-components": "^6.1.8",
 		"typescript": "^5.2.2",
 		"vite": "^5.1.4",
 		"vite-plugin-dts": "^3.7.3",

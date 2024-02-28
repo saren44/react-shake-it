@@ -16,7 +16,8 @@ export const StyledShakeIt = styled.div<{
   animation-timing-function: ${(props) => props.$tf};
   animation-iteration-count: ${(props) => props.$iters};
   animation-direction: ${(props) => props.$direction};
-  animation-fill-mode: ${(props) => props.$fm} ${(props) => props.$anim};
+  animation-fill-mode: ${(props) => props.$fm};
+  ${(props) => props.$anim};
 `
 
 export const ShakeIt: React.FC<IShakeItProps> = ({
