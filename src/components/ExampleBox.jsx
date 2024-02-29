@@ -8,6 +8,7 @@ const StyledExampleContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	margin-bottom: 25px;
 
 	.example {
 		display: flex;
@@ -15,6 +16,7 @@ const StyledExampleContainer = styled.div`
 		align-items: center;
 		width: 100%;
 		height: 300px;
+		margin-top: 10px;
 	}
 
 	.name {
