@@ -1,5 +1,6 @@
-import { CodeBlock, CopyBlock } from 'react-code-blocks'
+import { CodeBlock, CopyBlock, atomOneDark, atomOneLight, dracula, monokai, paraisoDark, paraisoLight, zenburn } from 'react-code-blocks'
 import styled from 'styled-components'
+import { themeMatcher } from '../utils/themeMatcher'
 
 
 const StyledExampleContainer = styled.div`
@@ -68,6 +69,7 @@ export const ExampleBox = ({children, code, name, desc}) => {
 							height: '100%',
 							tabSize: 2,
 						}}
+						theme={themeMatcher(atomOneDark, atomOneLight)}
 						codeBlock
 					/>
 				</div>

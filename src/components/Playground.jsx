@@ -35,11 +35,15 @@ const StyledPlayground = styled.div`
 	.animated {
 		width: 100px;
 		height: 50px;
-		background-color: lightyellow;
+		background-color: #fff98a;
 		border: 1px solid black;
 		justify-content: center;
 		align-items: center;
 		text-align: center;
+	}
+
+	.emoji {
+		color: black;
 	}
 `
 
@@ -169,7 +173,7 @@ export const Playground = () => {
 					direction="alternate"
 				>
 					<div className="animated">
-						<p> (＾-＾) </p>
+						<p className="emoji"> (＾-＾) </p>
 					</div>
 
 				</ShakeIt>

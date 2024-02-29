@@ -7,6 +7,10 @@ const StyledTitle = styled.p`
 	line-height: 0%;
 	font-weight: 200;
 	margin-left: 20px;
+
+	-webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `
 
 

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Title } from "./Title";
+import { themeMatcher } from "../utils/themeMatcher";
 
 const StyledNavBar = styled.div`
 	width: 100vw;
@@ -18,20 +19,6 @@ const StyledNavBar = styled.div`
 		justify-content: space-evenly;
 	}
 
-	a {
-		color: black;
-		text-decoration: none;
-	}
-
-	a:hover {
-		cursor: pointer;
-		color: black;
-	}
-
-	a:visited {
-		text-decoration: none;
-		color: black;
-	}
 
 	.dangerButton {
 		cursor: pointer;
@@ -43,12 +30,12 @@ const StyledNavBar = styled.div`
 	}
 
 	.dangerVisited {
-		color: black;
+		color: ${({ theme }) => theme.text};
 	}
 
 	.dangerVisited:hover {
 		cursor: default;
-		color: black;
+		color: ${({ theme }) => theme.text};
 	}
 `
 

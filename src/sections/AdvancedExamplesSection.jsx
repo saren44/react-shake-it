@@ -1,10 +1,7 @@
-import { ShakeIt } from "react-shake-it"
 import { ExampleBox } from "../components/ExampleBox"
 import { Section } from "../components/Section"
-import { BasicInterpolatorExample, CustomInterpolatorsExample, IndividualInterpolatorsExample, OnClickSingleExample, OnHoverExample, SimpleExample } from '../components/Examples'
-import { renderToString } from 'react-dom/server';
-import jsxToString from 'jsx-to-string';
-import { basicInterpolatorSource, customInterpolatorSource, individualInterpolatorsSource, onClickOnceSource, onHoverExampleSource, simpleExampleSource } from "../assets/codeSamples";
+import { BasicInterpolatorExample, CustomInterpolatorsExample, IndividualInterpolatorsExample } from '../components/Examples'
+import { basicInterpolatorSource, customInterpolatorSource, individualInterpolatorsSource } from "../assets/codeSamples";
 
 
 export const AdvancedExamplesSection = () => {
@@ -24,7 +21,7 @@ export const AdvancedExamplesSection = () => {
 			<ExampleBox
 				code={individualInterpolatorsSource}
 				name={'Individual interpolators'}
-				desc={'Interpolators can be targetted toward specific prop. Interporators not defined in the object will default to interpolateRandom'}
+				desc={'Interpolators can be targetted toward specific prop. Interpolators not defined in the object will default to interpolateRandom'}
 			>
 					<IndividualInterpolatorsExample />
 			</ExampleBox>

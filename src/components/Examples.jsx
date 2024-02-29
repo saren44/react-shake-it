@@ -1,5 +1,19 @@
 import { ShakeIt, interpolateLinear, interpolateCos, interpolateSin, interpolateLinearReverse } from "react-shake-it";
 import { useState } from "react";
+import styled from 'styled-components'
+
+
+export const AnimatedDiv = styled.div`
+	-webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+	font-size: 20px;
+
+	&:hover {
+		cursor: pointer;
+	}
+`
 
 
 export const SimpleExample = () => (
@@ -11,7 +25,7 @@ export const SimpleExample = () => (
 		duration={'200ms'}
 		direction="alternate"
 	>
-		<div> hello </div>
+		<AnimatedDiv> bzzzz </AnimatedDiv>
 	</ShakeIt>
 )
 
@@ -29,7 +43,7 @@ export const OnHoverExample = () => {
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => setHover(false)}
 		>
-			<div> hello </div>
+			<AnimatedDiv> hello </AnimatedDiv>
 		</ShakeIt>
 	)
 }
@@ -49,7 +63,7 @@ export const OnClickSingleExample = () => {
 			onClick={() => setClicked(true)}
 			onAnimationEnd={() => setClicked(false)}
 		>
-			<div> hello </div>
+			<AnimatedDiv> hello </AnimatedDiv>
 		</ShakeIt>
 	)
 }
@@ -61,7 +75,7 @@ export const BasicInterpolatorExample = () => (
 		duration={'500ms'}
 		interpolator={interpolateLinear}
 	>
-		<div> hello </div>
+		<AnimatedDiv> hello </AnimatedDiv>
 	</ShakeIt>
 )
 
@@ -76,7 +90,7 @@ export const IndividualInterpolatorsExample = () => (
 			v: interpolateCos
 		}}
 	>
-		<div> hello </div>
+		<AnimatedDiv> hello </AnimatedDiv>
 	</ShakeIt>
 )
 
@@ -99,7 +113,7 @@ export const CustomInterpolatorsExample = () => {
 				v: customInterpolator,
 			}}
 		>
-			<div> hello </div>
+			<AnimatedDiv> hello </AnimatedDiv>
 		</ShakeIt>
 	)
 }

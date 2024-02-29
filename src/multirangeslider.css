@@ -9,7 +9,6 @@
 	border: solid 1px gray;
 	border-radius: 10px;
 	padding: 20px 10px;
-	box-shadow: 1px 1px 4px black;
 	flex-direction: column;
 	-webkit-touch-callout: none; /* iOS Safari */
 	-webkit-user-select: none; /* Safari */
@@ -23,25 +22,25 @@
 }
 .multi-range .bar-left {
 	width: 25%;
-	background-color: whitesmoke;
+	background-color: #f1f1f1;
 	border-radius: 10px 0px 0px 10px;
 	padding: 4px 0px;
-	border: 1px solid black;
+	border: 1px solid #121620;
 }
 .multi-range .bar-right {
 	width: 25%;
-	background-color: whitesmoke;
+	background-color: #f1f1f1;
 	border-radius: 0px 10px 10px 0px;
-	border: 1px solid black;
+	border: 1px solid #121620;
 }
 .multi-range .bar-inner {
-	background-color: lightyellow;
+	background-color: #fff98a;
 	display: flex;
 	flex-grow: 1;
 	flex-shrink: 1;
 	justify-content: space-between;
 	position: relative;
-	border: solid 1px black;
+	border: solid 1px #121620;
 	justify-content: space-between;
 }
 .multi-range .bar-inner-left {
