@@ -31,4 +31,5 @@ export interface IstyledShakeItProps {
   $delay: string
 }
 
-export type IInterpolateFn = (progress: number) => number
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type IInterpolateFn = (progress: number, ...args: any[]) => number
