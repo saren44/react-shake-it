@@ -5,11 +5,12 @@ import { themeMatcher } from '../utils/themeMatcher'
 
 const StyledExampleContainer = styled.div`
 	width: 90%;
-	height: 400px;
+	height: 500px;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	margin-bottom: 25px;
+	justify-content: flex-start;
+	margin-bottom: 50px;
 
 	.example {
 		display: flex;
@@ -17,7 +18,7 @@ const StyledExampleContainer = styled.div`
 		align-items: center;
 		width: 100%;
 		height: 300px;
-		margin-top: 10px;
+		margin-top: 0;
 	}
 
 	.name {
@@ -30,7 +31,6 @@ const StyledExampleContainer = styled.div`
 		margin-left: 10px;
 		font-size: 20px;
 		margin-top: 0;
-		line-height: 0;
 	}
 
 	.displayBox {

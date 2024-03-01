@@ -14,11 +14,17 @@ const StyledSection = styled.div`
 		margin: 0;
 	}
 
+	.descContainer {
+		overflow-wrap: break-word;
+		display: inline-block;
+	}
+
 	.description {
 		margin-left: 10px;
 		font-size: 20px;
 		margin-top: 10px;
-		line-height: 0;
+		display: inline-block;
+		word-break: break-word;
 	}
 `
 
@@ -29,7 +35,10 @@ export const Section = ({children, id, title, desc}) => {
 	return (
 		<StyledSection id={id}>
 			<p className="title"> {title} </p>
-			<p className="description"> {desc} </p>
+			<div className="descContainer">
+				<p className="description"> {desc} </p>
+			</div>
+
 			{children}
 		</StyledSection>
 	)

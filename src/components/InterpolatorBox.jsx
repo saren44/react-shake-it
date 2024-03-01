@@ -7,10 +7,10 @@ const StyledInterpolatorBox = styled.div`
 	min-height: 250px;
 	display: flex;
 	flex-direction: row;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: space-around;
-	margin-bottom: 25px;
-	margin-top: 50px;
+	margin-bottom: 75px;
+	margin-top: 25px;
 
 	.textContainer {
 		width: 50%;
