@@ -35,7 +35,7 @@ const StyledPlayground = styled.div`
 	.animated {
 		width: 100px;
 		height: 50px;
-		background-color: #fff98a;
+		background-color: #0aefff;
 		border: 1px solid black;
 		justify-content: center;
 		align-items: center;

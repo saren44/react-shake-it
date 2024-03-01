@@ -14,6 +14,8 @@ export const GlobalStyles = createGlobalStyle`
 		-webkit-user-select: none; 
   	-ms-user-select: none; 
   	user-select: none; 
+
+		font-size: 20px;
 	}
 `;
 

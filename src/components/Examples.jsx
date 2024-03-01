@@ -43,7 +43,7 @@ export const OnHoverExample = () => {
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => setHover(false)}
 		>
-			<AnimatedDiv> hello </AnimatedDiv>
+			<AnimatedDiv> hover! </AnimatedDiv>
 		</ShakeIt>
 	)
 }
@@ -63,7 +63,7 @@ export const OnClickSingleExample = () => {
 			onClick={() => setClicked(true)}
 			onAnimationEnd={() => setClicked(false)}
 		>
-			<AnimatedDiv> hello </AnimatedDiv>
+			<AnimatedDiv> click! </AnimatedDiv>
 		</ShakeIt>
 	)
 }
@@ -75,7 +75,7 @@ export const BasicInterpolatorExample = () => (
 		duration={'500ms'}
 		interpolator={interpolateLinear}
 	>
-		<AnimatedDiv> hello </AnimatedDiv>
+		<AnimatedDiv> boo </AnimatedDiv>
 	</ShakeIt>
 )
 
@@ -90,7 +90,7 @@ export const IndividualInterpolatorsExample = () => (
 			v: interpolateCos
 		}}
 	>
-		<AnimatedDiv> hello </AnimatedDiv>
+		<AnimatedDiv> round n' round </AnimatedDiv>
 	</ShakeIt>
 )
 

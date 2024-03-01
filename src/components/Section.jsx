@@ -5,17 +5,17 @@ const StyledSection = styled.div`
 	width: 80vw;
 	margin-left: 10vw;
 	margin-top: 0;
-	margin-bottom: 0;
+	margin-bottom: 100px;
 
 	.title{
-		font-size: 40px;
+		font-size: 44px;
 		font-weight: 400;
 		margin: 0;
 	}
 
 	.description {
 		margin-left: 10px;
-		font-size: 16px;
+		font-size: 20px;
 		margin-top: 10px;
 		line-height: 0;
 	}

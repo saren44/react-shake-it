@@ -22,13 +22,13 @@ const StyledExampleContainer = styled.div`
 
 	.name {
 		margin-left: 20px;
-		font-size: 24px;
+		font-size: 30px;
 		font-weight: 300;
 	}
 
 	.description {
 		margin-left: 10px;
-		font-size: 16px;
+		font-size: 20px;
 		margin-top: 0;
 		line-height: 0;
 	}
@@ -68,6 +68,7 @@ export const ExampleBox = ({children, code, name, desc}) => {
 							overflowY: 'auto',
 							height: '100%',
 							tabSize: 2,
+							fontSize: 14,
 						}}
 						theme={themeMatcher(atomOneDark, atomOneLight)}
 						codeBlock

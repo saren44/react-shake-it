@@ -7,7 +7,7 @@ export const simpleExampleSource = `const SimpleExample = () => (
 		duration={'200ms'}
 		direction="alternate"
 	>
-		<div> hello </div>
+		<div> bzzzz </div>
 	</ShakeIt>
 )`
 
@@ -25,7 +25,7 @@ export const onHoverExampleSource = `const OnHoverExample = () => {
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => setHover(false)}
 		>
-			<div> hello </div>
+			<div> hover! </div>
 		</ShakeIt>
 	)
 }`
@@ -46,7 +46,7 @@ export const onClickOnceSource = `export const OnClickSsngleExample = () => {
 			onClick={() => setClicked(true)}
 			onAnimationEnd={() => setClicked(false)}
 		>
-			<div> hello </div>
+			<div> click! </div>
 		</ShakeIt>
 	)
 }`
@@ -58,7 +58,7 @@ export const basicInterpolatorSource = `export const BasicInterpolatorExample = 
 		duration={'500ms'}
 		interpolator={interpolateLinear}
 	>
-		<div> hello </div>
+		<div> boo </div>
 	</ShakeIt>
 )`
 
@@ -73,7 +73,7 @@ export const individualInterpolatorsSource = `export const IndividualInterpolato
 			v: interpolateCos
 		}}
 	>
-		<div> hello </div>
+		<div> round n' round </div>
 	</ShakeIt>
 )`
 
