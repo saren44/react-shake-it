@@ -9,26 +9,26 @@ export const AdvancedExamplesSection = () => {
 		<Section
 			id={'advanced-examples'}
 			title={'Learn my biggest secrets!'}
-			desc={'This section contains example usage of interpolator function, moving away from shakes to more calm animations'}
+			desc={'This section contains example usage of interpolator function, moving away from shakes to more predictable animations.'}
 		>
 			<ExampleBox
 				code={basicInterpolatorSource}
 				name={'Basic interpolator'}
-				desc={'The interpolator function is applied to all animated values'}
+				desc={'The interpolator function is applied to all animated values.'}
 			>
 					<BasicInterpolatorExample />
 			</ExampleBox>
 			<ExampleBox
 				code={individualInterpolatorsSource}
 				name={'Individual interpolators'}
-				desc={'Interpolators can be targetted toward specific prop. Interpolators not defined in the object will default to interpolateRandom'}
+				desc={'Interpolators can be targetted toward specific prop. Interpolators not defined in the object will default to interpolateRandom.'}
 			>
 					<IndividualInterpolatorsExample />
 			</ExampleBox>
 			<ExampleBox
 				code={customInterpolatorSource}
 				name={'Custom interpolators'}
-				desc={'This example shows a custom defined interpolator'}
+				desc={'This example shows a custom defined interpolator.'}
 			>
 				<CustomInterpolatorsExample />
 			</ExampleBox>

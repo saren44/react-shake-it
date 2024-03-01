@@ -3,7 +3,7 @@ import { ShakeIt } from "react-shake-it"
 
 const StyledTitle = styled.p`
 	font-family: "Titillium Web", sans-serif;
-	font-size: 64px;
+	font-size: 50px;
 	line-height: 0%;
 	font-weight: 200;
 	margin-left: 20px;

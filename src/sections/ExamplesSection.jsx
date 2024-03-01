@@ -15,26 +15,26 @@ export const ExamplesSection = () => {
 		<Section
 			id={'examples'}
 			title={'Check me out!'}
-			desc={'This section contains basic example shakes usage'}
+			desc={'This section contains basic example shakes usage.'}
 		>
 			<ExampleBox
 				code={simpleExampleSource}
 				name={'Simple'}
-				desc={'A constant buzz, if you will'}
+				desc={'A constant buzz, if you will.'}
 			>
 					<SimpleExample />
 			</ExampleBox>
 			<ExampleBox
 				code={onHoverExampleSource}
 				name={'On hover'}
-				desc={'The shake will only occur while hovering'}
+				desc={'The shake will only occur while hovering.'}
 			>
 					<OnHoverExample />
 			</ExampleBox>
 			<ExampleBox
 				code={onClickOnceSource}
 				name={'On click'}
-				desc={'The shake will occur once, on click'}
+				desc={'The shake will occur once, on click.'}
 			>
 				<OnClickSingleExample />
 			</ExampleBox>

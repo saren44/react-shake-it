@@ -6,6 +6,7 @@ const StyledSection = styled.div`
 	margin-left: 10vw;
 	margin-top: 0;
 	margin-bottom: 100px;
+	min-width: 1000px;
 
 	.title{
 		font-size: 44px;

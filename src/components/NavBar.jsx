@@ -4,13 +4,15 @@ import { Title } from "./Title";
 import { themeMatcher } from "../utils/themeMatcher";
 
 const StyledNavBar = styled.div`
-	width: 100vw;
+	width: 95vw;
 	height: auto;
 
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	margin-left: 2.5vw;
+	min-width: 1100px;
 
 	.linksContainer {
 		width: 70%;

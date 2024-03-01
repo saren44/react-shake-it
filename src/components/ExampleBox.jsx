@@ -71,7 +71,7 @@ export const ExampleBox = ({children, code, name, desc}) => {
 							fontSize: 14,
 						}}
 						theme={themeMatcher(atomOneDark, atomOneLight)}
-						codeBlock
+						codeBlock={true}
 					/>
 				</div>
 			</div>
