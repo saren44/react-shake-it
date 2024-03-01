@@ -95,7 +95,6 @@ export const Playground = () => {
 		o: {low: 0.95, high: 1.0},
 	})
 
-	console.log(data);
 
 
 	return (

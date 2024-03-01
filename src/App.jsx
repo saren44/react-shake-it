@@ -15,8 +15,10 @@ import { ShakeIt } from 'react-shake-it'
 import { GlobalStyles, darkTheme, lightTheme } from './theme'
 
 function App() {
+	const [isShaking, setIsShaking] = useState(false);
   const [shakeApp, setShakeApp] = useState(false)
-	const [isShaking, setIsShaking] = useState(false)
+
+	console.log(isShaking)
 
 	const getUserTheme = () => {
 		const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -40,14 +42,13 @@ function App() {
 				duration='1s'
 				precision={0.02}
 				onAnimationEnd={() => setIsShaking(false)}
-				onAnimationStart={() => setIsShaking(true)}
 			>
 			<div>
-				<NavBar shakeCallback={() => setShakeApp(true)} isShaked={shakeApp}/>
+				<NavBar shakeCallback={() => {setShakeApp(true); setIsShaking(true) }} isShaked={shakeApp}/>
 				<PlaygroundSection />
 				<ExamplesSection />
 				<AdvancedExamplesSection />
-				{!isShaking && <DocsSection />}
+				{isShaking ? <div /> : <DocsSection />}
     	</div>
 		</ShakeIt>
 		</ThemeProvider>

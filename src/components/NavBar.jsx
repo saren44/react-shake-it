@@ -51,7 +51,7 @@ export const NavBar = ({shakeCallback, isShaked}) => {
 				<a href='#examples'> examples </a>
 				<a href='#advanced-examples'> advanced examples </a>
 				<a href='#interpolators'> interpolators </a>
-				<a onClick={!isShaked && shakeCallback} className={isShaked ? "dangerVisited" : "dangerButton"} > {isShaked ? 'Are you proud of yourself?' : 'DO NOT CLICK ME'} </a>
+				<a onClick={!isShaked ? shakeCallback : () => {}} className={isShaked ? "dangerVisited" : "dangerButton"} > {isShaked ? 'Are you proud of yourself?' : 'DO NOT CLICK ME'} </a>
 			</div>
 		</StyledNavBar>
 	)

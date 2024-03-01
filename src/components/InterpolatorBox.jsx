@@ -46,6 +46,7 @@ const StyledInterpolatorBox = styled.div`
 		margin-left: 10px;
 		font-size: 20px;;
 		margin-top: 20px;
+		overflow-wrap: break-word;
 	}
 `
 
