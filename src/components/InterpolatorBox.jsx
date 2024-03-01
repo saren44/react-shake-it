@@ -19,6 +19,7 @@ const StyledInterpolatorBox = styled.div`
 		flex-direction: column;
 		align-items: flex-start;
 		margin-bottom: 25px;
+
 	}
 
 	.chartContainer {
@@ -46,7 +47,7 @@ const StyledInterpolatorBox = styled.div`
 		margin-left: 10px;
 		font-size: 20px;;
 		margin-top: 20px;
-		overflow-wrap: break-word;
+		word-wrap: break-word;
 	}
 `
 

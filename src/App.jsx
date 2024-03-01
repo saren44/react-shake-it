@@ -18,7 +18,6 @@ function App() {
 	const [isShaking, setIsShaking] = useState(false);
   const [shakeApp, setShakeApp] = useState(false)
 
-	console.log(isShaking)
 
 	const getUserTheme = () => {
 		const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;

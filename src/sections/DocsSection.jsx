@@ -84,7 +84,7 @@ export const DocsSection = () => {
 					'x2: number // x value of the second point, here 0.9',
 					'y2: number // y value of the second point, here 0.1',
 				]}
-				desc={'Customizable cubic bezier function. Internally used for all ease functions.'}
+				desc={'Customizable cubic bezier function.'}
 				fn={(progress) => interpolateCubicBezier(progress, 0.1, 0.9, 0.9, 0.1)}
 			/>	
 		</Section>
